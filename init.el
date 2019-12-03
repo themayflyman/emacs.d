@@ -1,26 +1,14 @@
 (load-theme 'misterioso)
+(setq-default display-line-numbers 'relative)
 
 (add-to-list 'load-path "~/.emacs.d/google-c-style")
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 
-(setq-default display-line-numbers 'relative)
-
-; (add-to-list 'load-path "~/.emacs.d/evil")
-; (require 'evil)
-; (evil-mode 1)
-
 (delete-selection-mode 1) ; Anything that writes to the buffer while the region is active will overwrite it
 
 (add-to-list 'default-frame-alist
              '(font . "courier"))
-
-; (add-to-list 'load-path "~/.emacs.d/emacs-libvterm")
-; (require 'vterm)
-
-(require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
-(setq whitespace-style '(face lines-tail))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
@@ -50,6 +38,13 @@ There are two things you can do about this warning:
 (eval-when-compile
   (require 'use-package))
 
+(use-package whitespace
+  :init
+  (setq whitespace-line-column 80)
+  (setq whitespace-style '(face lines-tail)))
+
 (use-package vterm
-    :ensure t
-)
+  :ensure t)
+
+(use-package company
+  :ensure t)
