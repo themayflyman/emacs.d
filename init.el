@@ -8,14 +8,14 @@
 (delete-selection-mode 1) ; Anything that writes to the buffer while the region is active will overwrite it
 
 (add-to-list 'default-frame-alist
-             '(font . "courier"))
+             '(font . "courier new"))
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
+n       (proto (if no-ssl "http" "https")))
   (when no-ssl
     (warn "\
 Your version of Emacs does not support SSL connections,
@@ -48,3 +48,8 @@ There are two things you can do about this warning:
 
 (use-package company
   :ensure t)
+
+(use-package gnu-elpa-keyring-update
+  :ensure t)
+
+; init.el ends here
