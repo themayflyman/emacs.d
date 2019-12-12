@@ -12,6 +12,9 @@
 
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
+; stop package--save-selected-packages from writting custom fields into init.el
+(defun package--save-selected-packages (&rest opt) nil)
+
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
